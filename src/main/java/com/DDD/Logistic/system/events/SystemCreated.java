@@ -12,24 +12,24 @@ import java.util.UUID;
 
 public class SystemCreated extends DomainEvent {
 
-    protected WorkerId typeID;
+    protected WorkerId workerId;
     protected SystemName systemName;
     protected Set<Position> positions;
     protected Set<Product>products;
     protected Set<Observation>Observations;
 
-    public SystemCreated(SystemName systemName,WorkerId typeID,Set<Position> positions,Set<Product>products,Set<Observation>Observations) {
+    public SystemCreated(SystemName systemName,WorkerId workerId,Set<Position> positions,Set<Product>products,Set<Observation>observations) {
         super("logisctic.system.systemcreated");
-        this.typeID=typeID;
+        this.workerId=workerId;
         this.systemName=systemName;
         this.positions=positions;
         this.products=products;
-        this.Observations=Observations;
+        this.Observations=observations;
 
     }
 
-    public WorkerId getTypeID() {
-        return typeID;
+    public WorkerId workerId() {
+        return workerId;
     }
 
     public SystemName getSystemName() {
