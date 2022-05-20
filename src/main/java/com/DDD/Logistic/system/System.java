@@ -5,6 +5,7 @@ import com.DDD.Logistic.system.events.*;
 import com.DDD.Logistic.system.values.*;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 public class System extends AggregateEvent<SystemId> {
@@ -18,6 +19,11 @@ public class System extends AggregateEvent<SystemId> {
     public System(SystemId entityId,SystemName systemName,WorkerId workerId,Set<Position> positions,Set<Product>products,Set<Observation>observations) {
         super(entityId);
         appendChange(new SystemCreated(systemName,workerId,positions,products,observations)).apply();
+    }
+
+    private System(SystemId systemId){
+        super(systemId);
+        subscribe(new SystemChanged(this));
     }
 
     public void addObservation(ObservationId observationId, Description description){
@@ -48,5 +54,44 @@ public class System extends AggregateEvent<SystemId> {
 
     public void updateDescription(ObservationId observationId,Description description){
         appendChange(new descriptionUpdated(observationId, description)).apply();
+    }
+
+    protected Optional<Observation> getObservationById(ObservationId entityId) {
+        return observations()
+                .stream()
+                .filter(observation -> observation.identity().equals(entityId))
+                .findFirst();
+    }
+    protected Optional<Product> getProductById(ProductId entityId) {
+        return products()
+                .stream()
+                .filter(product -> product.identity().equals(entityId))
+                .findFirst();
+    }
+    protected Optional<Position> getPositionById(PositionId entityId) {
+        return positions()
+                .stream()
+                .filter(position -> position.identity().equals(entityId))
+                .findFirst();
+    }
+
+    public WorkerId workerId() {
+        return workerId;
+    }
+
+    public SystemName systemName() {
+        return systemName;
+    }
+
+    public Set<Observation> observations() {
+        return observations;
+    }
+
+    public Set<Product> products() {
+        return products;
+    }
+
+    public Set<Position> positions() {
+        return positions;
     }
 }
