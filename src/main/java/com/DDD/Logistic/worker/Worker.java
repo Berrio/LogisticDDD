@@ -1,15 +1,12 @@
 package com.DDD.Logistic.worker;
 
 import co.com.sofka.domain.generic.AggregateEvent;
-import com.DDD.Logistic.system.Observation;
-import com.DDD.Logistic.system.SystemChanged;
-import com.DDD.Logistic.system.events.PositionStowageUpdated;
-import com.DDD.Logistic.system.events.observationAdded;
+import co.com.sofka.domain.generic.DomainEvent;
 import com.DDD.Logistic.system.values.*;
 import com.DDD.Logistic.worker.events.*;
 import com.DDD.Logistic.worker.values.*;
 import com.DDD.Logistic.worker.values.WorkerId;
-
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -17,14 +14,15 @@ import java.util.Set;
 public class Worker extends AggregateEvent<WorkerId> {
 
     private WorkerId workerId;
+    private WorkerName workerName;
     private Set<Restriction> restrictions;
     private Set<Function> functions;
     private Set<Area> areas;
 
-
-    public Worker(WorkerId workerId, Set<Restriction> restrictions , Set<Function> functions, Set<Area> areas) {
+    public Worker(WorkerId workerId,WorkerName workerName, Set<Restriction> restrictions , Set<Function> functions, Set<Area> areas) {
         super(workerId);
         this.workerId = workerId;
+        this.workerName=workerName;
         this.restrictions = restrictions;
         this.functions =functions ;
         this.areas = areas;
@@ -33,6 +31,16 @@ public class Worker extends AggregateEvent<WorkerId> {
     private Worker(WorkerId workerId){
         super(workerId);
         subscribe(new WorkerChanged(this));
+    }
+
+    public static Worker from(WorkerId personId, List<DomainEvent> events) {
+        var worker = new Worker(personId);
+        events.forEach(worker::applyEvent);
+        return worker;
+    }
+
+    public void associateSystem(SystemId systemId) {
+        appendChange(new SystemAssociated(systemId)).apply();
     }
 
     public void addRestiction(RestrictionId restrictionId, RestrictionName restrictionName){
