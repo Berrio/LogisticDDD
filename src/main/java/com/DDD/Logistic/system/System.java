@@ -29,19 +29,19 @@ public class System extends AggregateEvent<SystemId> {
     public void addObservation(ObservationId observationId, Description description){
         Objects.requireNonNull(observationId);
         Objects.requireNonNull(description);
-        appendChange(new observationAdded(observationId,description)).apply();
+        appendChange(new ObservationAdded(observationId,description)).apply();
     }
 
     public void addPosition(PositionId positionId,Stowage stowage){
         Objects.requireNonNull(positionId);
         Objects.requireNonNull(stowage);
-        appendChange(new positionAdded(positionId,stowage)).apply();
+        appendChange(new PositionAdded(positionId,stowage)).apply();
     }
 
     public void addProduct(ProductId productId,Area area){
         Objects.requireNonNull(productId);
         Objects.requireNonNull(area);
-        appendChange(new productAdded(productId,area)).apply();
+        appendChange(new ProductAdded(productId,area)).apply();
     }
 
     public void updatePositionStowage(PositionId positionId,Stowage stowage){
@@ -49,11 +49,11 @@ public class System extends AggregateEvent<SystemId> {
     }
 
     public void updateProductArea(ProductId productId,Area area){
-        appendChange(new productAreaUpdated(productId, area)).apply();
+        appendChange(new ProductAreaUpdated(productId, area)).apply();
     }
 
     public void updateDescription(ObservationId observationId,Description description){
-        appendChange(new descriptionUpdated(observationId, description)).apply();
+        appendChange(new DescriptionUpdated(observationId, description)).apply();
     }
 
     protected Optional<Observation> getObservationById(ObservationId entityId) {

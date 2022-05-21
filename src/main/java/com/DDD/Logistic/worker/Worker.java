@@ -13,11 +13,12 @@ import java.util.Set;
 
 public class Worker extends AggregateEvent<WorkerId> {
 
-    private WorkerId workerId;
-    private WorkerName workerName;
-    private Set<Restriction> restrictions;
-    private Set<Function> functions;
-    private Set<Area> areas;
+    protected WorkerId workerId;
+    protected WorkerName workerName;
+    protected SystemId systemId;
+    protected Set<Restriction> restrictions;
+    protected Set<Function> functions;
+    protected Set<Area> areas;
 
     public Worker(WorkerId workerId,WorkerName workerName, Set<Restriction> restrictions , Set<Function> functions, Set<Area> areas) {
         super(workerId);
@@ -55,13 +56,13 @@ public class Worker extends AggregateEvent<WorkerId> {
         appendChange(new FunctionAdded(functionId,functionName)).apply();
     }
 
-    public void addArea(AreaId areaId, Area area){
+    public void addArea(AreaId areaId, com.DDD.Logistic.worker.values.Area area){
         Objects.requireNonNull(areaId);
         Objects.requireNonNull(area);
         appendChange(new AreaAdded(areaId,area)).apply();
     }
 
-    public void updateAreaName(AreaId areaId, Area area){
+    public void updateAreaName(AreaId areaId, com.DDD.Logistic.worker.values.Area area){
         appendChange(new AreaNameUpdated(areaId, area)).apply();
     }
 
@@ -108,5 +109,13 @@ public class Worker extends AggregateEvent<WorkerId> {
 
     public Set<Area> areas() {
         return areas;
+    }
+
+    public WorkerName workerName() {
+        return workerName;
+    }
+
+    public SystemId getSystemId() {
+        return systemId;
     }
 }

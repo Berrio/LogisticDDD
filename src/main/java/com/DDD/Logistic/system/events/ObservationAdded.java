@@ -4,9 +4,9 @@ import co.com.sofka.domain.generic.DomainEvent;
 import com.DDD.Logistic.system.values.Description;
 import com.DDD.Logistic.system.values.ObservationId;
 
-public class observationAdded extends DomainEvent {
+public class ObservationAdded extends DomainEvent {
     private final Description description;
-    public observationAdded(ObservationId observationId, Description description) {
+    public ObservationAdded(ObservationId observationId, Description description) {
         super("logistic.system.observationadded");
         this.description=description;
     }

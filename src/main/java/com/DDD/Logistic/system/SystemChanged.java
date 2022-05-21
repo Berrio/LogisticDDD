@@ -15,6 +15,12 @@ public class SystemChanged extends EventChange {
             system.observations=new HashSet<>();
         });
 
+        apply((SystemCreated event)->{
+            system.systemName=event.getSystemName();
+            system.positions=new HashSet<>();
+            system.products=new HashSet<>();
+            system.observations=new HashSet<>();
+        });
 
     }
 }
