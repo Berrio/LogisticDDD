@@ -6,10 +6,20 @@ import com.DDD.Logistic.system.values.ProductId;
 
 public class ProductAreaUpdated extends DomainEvent {
 
-    private final Area area;
+    private final ProductId productId;
+    private final Area productArea;
 
     public ProductAreaUpdated(ProductId productId, Area area) {
         super("logistic.system.productareaupdated");
-        this.area=area;
+        this.productId=productId;
+        this.productArea=area;
+    }
+
+    public ProductId getProductId() {
+        return productId;
+    }
+
+    public Area getProductArea() {
+        return productArea;
     }
 }

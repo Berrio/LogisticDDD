@@ -18,12 +18,12 @@ public class System extends AggregateEvent<SystemId> {
 
     public System(SystemId entityId,SystemName systemName,WorkerId workerId,Set<Position> positions,Set<Product>products,Set<Observation>observations) {
         super(entityId);
-        appendChange(new SystemCreated(systemName,workerId,positions,products,observations)).apply();
+        appendChange(new SystemCreate(systemName,workerId,positions,products,observations)).apply();
     }
 
     private System(SystemId systemId){
         super(systemId);
-        subscribe(new SystemChanged(this));
+        subscribe(new SystemChange(this));
     }
 
     public void addObservation(ObservationId observationId, Description description){

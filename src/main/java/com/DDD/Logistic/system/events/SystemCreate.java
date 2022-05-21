@@ -8,9 +8,8 @@ import com.DDD.Logistic.system.values.SystemName;
 import com.DDD.Logistic.system.values.WorkerId;
 
 import java.util.Set;
-import java.util.UUID;
 
-public class SystemCreated extends DomainEvent {
+public class SystemCreate extends DomainEvent {
 
     protected WorkerId workerId;
     protected SystemName systemName;
@@ -18,7 +17,7 @@ public class SystemCreated extends DomainEvent {
     protected Set<Product>products;
     protected Set<Observation>Observations;
 
-    public SystemCreated(SystemName systemName,WorkerId workerId,Set<Position> positions,Set<Product>products,Set<Observation>observations) {
+    public SystemCreate(SystemName systemName, WorkerId workerId, Set<Position> positions, Set<Product>products, Set<Observation>observations) {
         super("logisctic.system.systemcreated");
         this.workerId=workerId;
         this.systemName=systemName;
