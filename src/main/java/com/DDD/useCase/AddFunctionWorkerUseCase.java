@@ -4,7 +4,6 @@ import co.com.sofka.business.generic.UseCase;
 import co.com.sofka.business.support.RequestCommand;
 import co.com.sofka.business.support.ResponseEvents;
 import com.DDD.domain.worker.Worker;
-import com.DDD.domain.worker.commands.AddArea;
 import com.DDD.domain.worker.commands.AddFunction;
 
 public class AddFunctionWorkerUseCase extends UseCase<RequestCommand<AddFunction>, ResponseEvents> {

@@ -35,7 +35,7 @@ public class AssociateSystemUseCaseTest {
     private DomainEventRepository repository;
 
     @Test
-    void addArea(){
+    void AssociateSystem(){
         var command= new AssociateSystem(WorkerId.of(ROOTID),new SystemId(),new SystemName("Aduana"));
         var useCase= new AsociateSystemUseCase();
 

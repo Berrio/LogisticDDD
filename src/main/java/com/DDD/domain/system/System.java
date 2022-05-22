@@ -1,9 +1,12 @@
 package com.DDD.domain.system;
 
 import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 import com.DDD.domain.system.events.*;
 import com.DDD.domain.system.values.*;
+import com.DDD.domain.worker.Worker;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -15,6 +18,12 @@ public class System extends AggregateEvent<SystemId> {
     protected Set<Observation> observations;
     protected Set<Product> products;
     protected Set<Position> positions;
+
+    public static System from(SystemId systemId, List<DomainEvent> events) {
+        var system = new System(systemId);
+        events.forEach(system::applyEvent);
+        return system;
+    }
 
     public System(SystemId entityId, SystemName systemName) {
         super(entityId);

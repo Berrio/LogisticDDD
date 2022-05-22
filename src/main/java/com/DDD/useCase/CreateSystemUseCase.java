@@ -5,8 +5,6 @@ import co.com.sofka.business.support.RequestCommand;
 import co.com.sofka.business.support.ResponseEvents;
 import com.DDD.domain.system.System;
 import com.DDD.domain.system.commands.CreateSystem;
-import com.DDD.domain.worker.Worker;
-import com.DDD.domain.worker.commands.CreateWorker;
 
 public class CreateSystemUseCase extends UseCase<RequestCommand<CreateSystem>, ResponseEvents> {
 

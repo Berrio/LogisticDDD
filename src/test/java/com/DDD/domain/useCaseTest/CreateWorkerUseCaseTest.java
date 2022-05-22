@@ -16,7 +16,7 @@ public class CreateWorkerUseCaseTest {
     void createWorker(){
          //Arrange
         var comand = new CreateWorker(
-                WorkerId.of("xxxx"),
+                WorkerId.of("1"),
                 new WorkerName("Aruto")
         );
 

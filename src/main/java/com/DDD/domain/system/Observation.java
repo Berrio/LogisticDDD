@@ -15,7 +15,7 @@ public class Observation extends Entity<ObservationId> {
         this.description = description;
     }
 
-    public void updateStowage(Description description) {
+    public void updateDesciption(Description description) {
         this.description = Objects.requireNonNull(description);
     }
 

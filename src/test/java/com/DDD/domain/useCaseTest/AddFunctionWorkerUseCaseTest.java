@@ -30,7 +30,7 @@ public class AddFunctionWorkerUseCaseTest {
     private DomainEventRepository repository;
 
     @Test
-    void addFunction(){
+    void AddFunctionWorker(){
         var command= new AddFunction(WorkerId.of(ROOTID),new FunctionId(),new FunctionName("Picker"));
         var useCase= new AddFunctionWorkerUseCase();
 

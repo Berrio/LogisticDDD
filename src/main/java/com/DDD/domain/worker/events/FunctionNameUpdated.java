@@ -3,8 +3,10 @@ package com.DDD.domain.worker.events;
 import co.com.sofka.domain.generic.DomainEvent;
 import com.DDD.domain.worker.values.FunctionId;
 import com.DDD.domain.worker.values.FunctionName;
+import com.DDD.domain.worker.values.WorkerId;
 
 public class FunctionNameUpdated extends DomainEvent {
+
 
     private final FunctionId functionId;
     private final FunctionName functionName;
@@ -15,6 +17,7 @@ public class FunctionNameUpdated extends DomainEvent {
         this.functionName = functionName;
     }
 
+
     public FunctionName getFunctionName() {
         return functionName;
     }
@@ -22,4 +25,5 @@ public class FunctionNameUpdated extends DomainEvent {
     public FunctionId getFunctionId() {
         return functionId;
     }
+
 }

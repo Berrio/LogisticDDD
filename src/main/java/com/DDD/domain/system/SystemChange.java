@@ -44,7 +44,7 @@ public class SystemChange extends EventChange {
         apply((DescriptionUpdated event)->{
             var desc=system.getObservationById(event.getObservationId()).
                     orElseThrow(()-> new IllegalArgumentException("Observation not found"));
-            desc.updateStowage(event.getDescription());
+            desc.updateDesciption(event.getDescription());
         });
 
         apply((ObservationAdded event)->{
